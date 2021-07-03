@@ -1,5 +1,10 @@
 package com.finder.servingwebcontent.exception;
 
+/**
+ * Represents a API error.
+ * @author chbarbosa
+ *
+ */
 public class APIException extends Exception {
 
 

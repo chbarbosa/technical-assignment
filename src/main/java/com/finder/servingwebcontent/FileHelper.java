@@ -7,22 +7,30 @@ import java.nio.file.Paths;
 
 import com.finder.servingwebcontent.exception.FileAccessException;
 
+/**
+ * A helper for file usage.
+ * @author chbarbosa
+ *
+ */
 public class FileHelper {
 
+	/**
+	 * Private constructor.
+	 */
 	private FileHelper() {
 		super();
 	}
 
+
 	/**
-	 * Packs the items.
-	 *
-	 * @param filePath file path to the setup file.
-	 * @return the package setup.
-	 * @throws FileAccessException file reading error.
+	 * Reads all data from a specified file.
+	 * @param filePath the file path
+	 * @return file content
+	 * @throws FileAccessException error to access the file
 	 */
 	public static String readString(String filePath) throws FileAccessException {
-		// Read file
 		try {
+			// Read file
 			return Files.readString(Paths.get(FileHelper.class.getClassLoader().getResource(filePath).toURI()));
 		} catch (IOException | URISyntaxException e) {
 			throw new FileAccessException(e);

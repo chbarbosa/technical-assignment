@@ -1,5 +1,10 @@
 package com.finder.servingwebcontent.exception;
 
+/**
+ * Represents the file access error.
+ * @author chbarbosa
+ *
+ */
 public class FileAccessException extends Exception {
 
 
