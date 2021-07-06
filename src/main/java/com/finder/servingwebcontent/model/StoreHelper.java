@@ -1,4 +1,4 @@
-package com.finder.servingwebcontent;
+package com.finder.servingwebcontent.model;
 
 import java.util.Arrays;
 import java.util.List;

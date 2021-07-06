@@ -1,4 +1,4 @@
-package com.finder.servingwebcontent;
+package com.finder.servingwebcontent.model;
 
 /**
  * Represents a store.
@@ -35,6 +35,33 @@ public class Store {
 	 * The closing time.
 	 */
 	private String todayClose;
+
+	/**
+	 * The default constructor.
+	 */
+	public Store() {
+		super();
+	}
+
+	/**
+	 * Constructor using all fields.
+	 * @param city city name
+	 * @param addressName store address.
+	 * @param latitude latitude info
+	 * @param longitude longitude info
+	 * @param todayOpen opening time
+	 * @param todayClose closing time
+	 */
+	public Store(String city, String addressName, Double latitude, Double longitude, String todayOpen,
+			String todayClose) {
+		super();
+		this.city = city;
+		this.addressName = addressName;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.todayOpen = todayOpen;
+		this.todayClose = todayClose;
+	}
 
 	public String getCity() {
 		return city;
