@@ -6,9 +6,9 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.finder.servingwebcontent.exception.APIException;
 import com.finder.servingwebcontent.model.CalculatedDistanceStore;
@@ -63,12 +64,13 @@ public class StoresController {
 
 	//@RequestMapping(path = "/stores", method = RequestMethod.POST)
 	@PostMapping("/stores")
-	public String locateClosestStores(@ModelAttribute Position userPosition, Model model) {
+	public String locateClosestStores(@ModelAttribute Position informedPosition, Model model) {
 
+		logger.info("Looking for the closes stores at " + informedPosition.toString());
 		try {
 			List<CalculatedDistanceStore> stores = this.storeService.findClosestStores(
-					userPosition.getLatitude(),
-					userPosition.getLongitude(),
+					informedPosition.getLatitude(),
+					informedPosition.getLongitude(),
 					LIST_SIZE_LIMIT);
 			// This list is already ordered
 			model.addAttribute("limit", LIST_SIZE_LIMIT);
