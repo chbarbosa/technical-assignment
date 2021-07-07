@@ -1,12 +1,36 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-<head>
-<title>Getting Started: Serving Web Content</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
-<body>
-	<p>
-		Get your greeting <a href="/greeting">here</a>
-	</p>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+<body class="w3-light-grey">
+	<div class="w3-container">
+		<h1>Welcome!</h1>
+		<h3>Check our closest stores for you</h3>
+		<p>
+			Get your greeting <a href="/greeting">here</a>
+		</p>
+		<p>
+			Check the closest stores <a href="/closest">here</a>
+		</p>
+		<p>
+			<form method="POST" th:action="@{/stores}">
+			    <input type="hidden" id="latId"/>
+			    <input type="hidden" id="lonId"/>
+			    <button type="submit" name="submit" value="value" class="link-button">This is a link that sends a POST request</button>
+			</form>
+		</p>
+		<p>
+			Check our stores <a href="/stores">here</a>
+		</p>
+	</div>
+  <script type="text/javascript">
+  </script>
 </body>
 </html>

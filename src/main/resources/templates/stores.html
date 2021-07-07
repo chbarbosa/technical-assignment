@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+<body class="w3-light-grey">
+	<div class="w3-container">
+	    <p th:text="'There are ' + ${number} + ' stores. Click in the city to see the store list.'" />
+	    <h5>Stores</h5>
+	    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+	    <thead>
+	        <tr>
+	            <th> City </th>
+	            <th> Qtd Stores </th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr th:each="key: ${map.keySet()}">
+	            <td><a th:href="@{'/stores/'+ ${key}}" th:text="${key}">City</a></td>
+	            <td><span th:text="${map.get(key)}"> Qtd Stores </span></td>
+	        </tr>
+	    </tbody>
+	</table>
+	</div>
+</body>
+</html>

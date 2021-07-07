@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.TreeMap;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -65,7 +66,7 @@ public class StoreService {
 	 */
 	public Map<String, Long> getStoresPerCity() throws APIException{
 		return getStores().stream()
-				  .collect(Collectors.groupingBy(Store::getCity, Collectors.counting()));
+				  .collect(Collectors.groupingBy(Store::getCity, TreeMap::new, Collectors.counting()));
 	}
 	/**
 	 * Finds the store list of the specified city.
