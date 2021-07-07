@@ -13,19 +13,14 @@ public class CalculatedDistanceStore {
 	private Store store;
 
 	/**
+	 * The store position.
+	 */
+	private Position position;
+
+	/**
 	 * The calculated distance.
 	 */
 	private double distance;
-
-	/**
-	 * The latitude of the specific coordinate.
-	 */
-	private double latitude;
-
-	/**
-	 * The longitude of the specific coordinate.
-	 */
-	private double longitude;
 
 	/**
 	 * Constructor using all fields.
@@ -38,8 +33,7 @@ public class CalculatedDistanceStore {
 		super();
 		this.store = store;
 		this.distance = distance;
-		this.latitude = latitude;
-		this.longitude = longitude;
+		this.position = new Position(latitude, longitude);
 	}
 
 	public Store getStore() {
@@ -58,26 +52,17 @@ public class CalculatedDistanceStore {
 		this.distance = distance;
 	}
 
-	public double getLatitude() {
-		return latitude;
+	public Position getPosition() {
+		return position;
 	}
 
-	public void setLatitude(double latitude) {
-		this.latitude = latitude;
-	}
-
-	public double getLongitude() {
-		return longitude;
-	}
-
-	public void setLongitude(double longitude) {
-		this.longitude = longitude;
+	public void setPosition(Position position) {
+		this.position = position;
 	}
 
 	@Override
 	public String toString() {
-		return "CalculatedDistanceStore [store=" + store + ", distance=" + distance + ", latitude=" + latitude
-				+ ", longitude=" + longitude + "]";
+		return "CalculatedDistanceStore [store=" + store + ", position=" + position + ", distance=" + distance + "]";
 	}
 
 }

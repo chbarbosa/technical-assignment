@@ -11,18 +11,22 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </style>
 <body class="w3-light-grey">
 	<div class="w3-container">
-	    <p th:text="'There are ' + ${number} + ' stores. Click in the city to see the store list.'" />
+	    <h5>
+	    	<span th:text="'The ' + ${limit} + ' closest stores'" th:remove="tag">Stores</span>
+	    </h5>
 	    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
 	    <thead>
 	        <tr>
-	            <th> City </th>
-	            <th> Qtd Stores </th>
+	            <th> Address </th>
+	            <th> Opening </th>
+	            <th> Closing </th>
 	        </tr>
 	    </thead>
 	    <tbody>
-	        <tr th:each="key: ${map.keySet()}">
-	            <td><a th:href="@{'/stores/'+ ${key}}" th:text="${key}">City</a></td>
-	            <td><span th:text="${map.get(key)}"> Qtd Stores </span></td>
+	        <tr th:each="cds: ${stores}">
+	            <td><span th:text="${cds.store.addressName}"> Address </span></td>
+	            <td><span th:text="${cds.store.todayOpen}"> Opening </span></td>
+	            <td><span th:text="${cds.store.todayClose}"> Closing </span></td>
 	        </tr>
 	    </tbody>
 	</table>

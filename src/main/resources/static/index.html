@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
-<meta charset="UTF-8">
+<title>Technical assignment</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="application/json; charset=UTF-8" />
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+
+.link-button {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  text-decoration: underline;
+  cursor: pointer;
+}
+ .p4 {
+  padding: 8px;
+ }
 </style>
 <body class="w3-light-grey">
 	<div class="w3-container">
-		<h1>Welcome!</h1>
-		<h3>Check our closest stores for you</h3>
+		<h1>Welcome! This a technical assignment</h1>
+		<h3>Find our closest stores near you</h3>
+		<p id="alert" class="w3-red"></p>
 		<p>
-			Get your greeting <a href="/greeting">here</a>
-		</p>
-		<p>
-			Check the closest stores <a href="/closest">here</a>
-		</p>
-		<p>
-			<form method="POST" th:action="@{/stores}">
+			<form method="POST" action="/stores">
 			    <input type="hidden" id="latId"/>
 			    <input type="hidden" id="lonId"/>
-			    <button type="submit" name="submit" value="value" class="link-button">This is a link that sends a POST request</button>
+			    Check the closest stores <button type="submit" name="submit" value="value" class="link-button">here</button>
 			</form>
 		</p>
 		<p>
@@ -31,6 +37,41 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 		</p>
 	</div>
   <script type="text/javascript">
+  const x = document.getElementById("alert");
+
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(setPosition, showError);
+    } else {
+      x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+  }
+
+  function setPosition(position) {
+    var lat = document.getElementById("latId");
+    lat.value = position.coords.latitude;
+    var lon = document.getElementById("lonId");
+    lon.value = position.coords.longitude;
+  }
+
+  function showError(error) {
+    switch(error.code) {
+      case error.PERMISSION_DENIED:
+        x.innerHTML = "User denied the request for Geolocation."
+        break;
+      case error.POSITION_UNAVAILABLE:
+        x.innerHTML = "Location information is unavailable."
+        break;
+      case error.TIMEOUT:
+        x.innerHTML = "The request to get user location timed out."
+        break;
+      case error.UNKNOWN_ERROR:
+        x.innerHTML = "An unknown error occurred."
+        break;
+    }
+  }
+
+  getLocation();
   </script>
 </body>
 </html>
