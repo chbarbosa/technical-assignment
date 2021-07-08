@@ -48,7 +48,7 @@ class StoresControllerTest {
 	void testLocateClosestStores() throws Exception {
 		this.mockMvc.perform(
 				MockMvcRequestBuilders
-				.post(STORES_PATH)
+				.get(STORES_PATH + "/geolocation")
                 .contentType("application/x-www-form-urlencoded")
                 .param("latitude", "5")
                 .param("longitude", "10"))

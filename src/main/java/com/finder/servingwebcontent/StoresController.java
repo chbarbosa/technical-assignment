@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import com.finder.servingwebcontent.exception.APIException;
 import com.finder.servingwebcontent.model.CalculatedDistanceStore;
@@ -49,7 +48,7 @@ public class StoresController {
 	 */
 	@GetMapping("/stores")
 	public String getStores(Model model) {
-
+		logger.info("Getting the number of registered stores per Cities");
 		try {
 			int registeredStores = this.storeService.countRegisteredStores();
 			Map<String, Long> storesPerCity = this.storeService.getStoresPerCity();
@@ -89,9 +88,8 @@ public class StoresController {
 	 * @param model a holder for model attributes
 	 * @return the page to shows the closest stores
 	 */
-	@PostMapping("/stores")
+	@GetMapping("/stores/geolocation")
 	public String locateClosestStores(@ModelAttribute Position informedPosition, Model model) {
-
 		logger.info("Looking for the closest stores for {}", informedPosition);
 		try {
 			List<CalculatedDistanceStore> stores = this.storeService.findClosestStores(

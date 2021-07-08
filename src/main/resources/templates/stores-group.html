@@ -11,7 +11,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </style>
 <body class="w3-light-grey">
 	<div class="w3-container">
+	    <h5>
+	    	<span>The number of registered stores per city</span>
+	    </h5>
 	    <p th:text="'There are ' + ${number} + ' stores. Click in the city to see the store list.'" />
+		<p class="w3-red" th:text="${msg}"></p>
 	    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
 	    <thead>
 	        <tr>
@@ -26,6 +30,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 	        </tr>
 	    </tbody>
 	</table>
+	</div>
+	<div class="w3-container" style="text-align: center; margin-top: 2px;">
+		<a class="w3-button w3-dark-grey" href="/"><i class="fa fa-home"></i>&nbsp;Home</a>
 	</div>
 </body>
 </html>

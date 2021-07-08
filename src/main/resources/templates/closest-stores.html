@@ -14,7 +14,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 		<h5>
 			<span>Give your position:</span>
 		</h5>
-		<form method="POST" action="/stores">
+		<p class="w3-red" th:text="${msg}"></p>
+		<form method="GET" action="/stores/geolocation">
 			<label for="latId">Latitude</label>
 			<input id="latId" name="latitude" type="number" max="90" min="-90" value="0" required="required" />
 			<label for="lonId">Longitude</label>
@@ -42,6 +43,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 	        </tr>
 	    </tbody>
 	</table>
+	</div>
+	<div class="w3-container" style="text-align: center; margin-top: 2px;">
+		<a class="w3-button w3-dark-grey" href="/"><i class="fa fa-home"></i>&nbsp;Home</a>
 	</div>
 </body>
 </html>
