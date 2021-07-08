@@ -70,6 +70,7 @@ public class StoresController {
 	 */
 	@GetMapping("/stores/{city}")
 	public String showStoresByCity(@PathVariable String city, Model model) {
+		logger.info("Looking for registered stores in {}", city);
 		try {
 			model.addAttribute("city", city);
 			List<Store> stores = this.storeService.findStoreByCity(city);
@@ -91,7 +92,7 @@ public class StoresController {
 	@PostMapping("/stores")
 	public String locateClosestStores(@ModelAttribute Position informedPosition, Model model) {
 
-		logger.info("Looking for the closes stores for {}", informedPosition);
+		logger.info("Looking for the closest stores for {}", informedPosition);
 		try {
 			List<CalculatedDistanceStore> stores = this.storeService.findClosestStores(
 					informedPosition.getLatitude(),

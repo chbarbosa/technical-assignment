@@ -7,7 +7,6 @@ package com.finder.servingwebcontent.exception;
  */
 public class APIException extends Exception {
 
-
 	/**
 	 * serial uid.
 	 */
