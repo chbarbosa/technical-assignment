@@ -12,3 +12,4 @@ The closest stores option will find the stores by the geolocation position infor
 * Add statistics.
 * Add filter for cities page to make easy to find one.
 * Redesign the first page.
+* Improve tests in **StoresControllerTest**

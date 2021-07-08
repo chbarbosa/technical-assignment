@@ -49,7 +49,9 @@ class StoresControllerTest {
 		this.mockMvc.perform(
 				MockMvcRequestBuilders
 				.post(STORES_PATH)
-				.content("{\"latitude\" : \"15\"}"))
+                .contentType("application/x-www-form-urlencoded")
+                .param("latitude", "5")
+                .param("longitude", "10"))
 				.andDo(MockMvcResultHandlers.print())
 				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
