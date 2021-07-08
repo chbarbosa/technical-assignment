@@ -1,5 +1,10 @@
 package com.finder.servingwebcontent.model;
 
+/**
+ * Represents a geolocation position.
+ * @author chbarbosa
+ *
+ */
 public class Position {
 
 	/**
