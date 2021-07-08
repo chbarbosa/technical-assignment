@@ -41,16 +41,19 @@ public class StoreService {
 	 * Finds the closest stores to a given position.
 	 * @param latitudePosition the user latitude position
 	 * @param longitudePosition the user longitude position
-	 * @param listSize the specified size list of the closest stores
+	 * @param sizeLimit the specified size list of the closest stores
 	 * @return the found list
 	 * @throws APIException when there are no stores
 	 */
-	public List<CalculatedDistanceStore> findClosestStores(double latitudePosition, double longitudePosition, int listSize) throws APIException {
-	    return getStores().stream()
+	public List<CalculatedDistanceStore> findClosestStores(double latitudePosition, double longitudePosition, int sizeLimit) throws APIException {
+	    List<CalculatedDistanceStore> list = getStores().stream()
 	    	.map(s -> new CalculatedDistanceStore(s, this.calculatesDistanceToStore(latitudePosition, longitudePosition, s), latitudePosition, longitudePosition))
 	    	.sorted(Comparator.comparing(CalculatedDistanceStore::getDistance))
-	    	.collect(Collectors.toList())
-	    	.subList(0, listSize);
+	    	.collect(Collectors.toList());
+		if (list.size() <= sizeLimit) {
+			return list;
+		}
+		return list.subList(0, sizeLimit);
 	}
 	/**
 	 * Counts the registered stores.
