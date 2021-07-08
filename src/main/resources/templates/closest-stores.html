@@ -11,10 +11,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </style>
 <body class="w3-light-grey">
 	<div class="w3-container" id="filter">
+		<h3>Stores</h3>
 		<h5>
 			<span>Give your position:</span>
 		</h5>
-		<p class="w3-red" th:text="${msg}"></p>
+		<p class="w3-red" style="text-indent: 3px;" th:text="${msg}"></p>
 		<form method="GET" action="/stores/geolocation">
 			<label for="latId">Latitude</label>
 			<input id="latId" name="latitude" type="number" max="90" min="-90" value="0" required="required" />
@@ -22,27 +23,29 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 			<input id="lonId" name="longitude" type="number" max="180" min="-180" value="0" required="required" />
 		    <button type="submit" name="submit" value="value">find</button>
 		</form>
+	    <p>
+	    	<span th:text="'The ' + ${limit} + ' closest stores'" th:remove="tag">Stores</span>
+	    </p>
 	</div>
 	<div class="w3-container">
-	    <h5>
-	    	<span th:text="'The ' + ${limit} + ' closest stores'" th:remove="tag">Stores</span>
-	    </h5>
-	    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
-	    <thead>
-	        <tr>
-	            <th> Address </th>
-	            <th> Opening </th>
-	            <th> Closing </th>
-	        </tr>
-	    </thead>
-	    <tbody>
-	        <tr th:each="cds: ${stores}">
-	            <td><span th:text="${cds.store.addressName}"> Address </span></td>
-	            <td><span th:text="${cds.store.todayOpen}"> Opening </span></td>
-	            <td><span th:text="${cds.store.todayClose}"> Closing </span></td>
-	        </tr>
-	    </tbody>
-	</table>
+		<table
+			class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white"
+			th:if="${stores != null}">
+			<thead>
+				<tr>
+					<th>Address</th>
+					<th>Opening</th>
+					<th>Closing</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cds: ${stores}">
+					<td><span th:text="${cds.store.addressName}"> Address </span></td>
+					<td><span th:text="${cds.store.todayOpen}"> Opening </span></td>
+					<td><span th:text="${cds.store.todayClose}"> Closing </span></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 	<div class="w3-container" style="text-align: center; margin-top: 2px;">
 		<a class="w3-button w3-dark-grey" href="/"><i class="fa fa-home"></i>&nbsp;Home</a>

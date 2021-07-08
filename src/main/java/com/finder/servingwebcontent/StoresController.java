@@ -36,6 +36,11 @@ public class StoresController {
 	private static final int LIST_SIZE_LIMIT = 5;
 
 	/**
+	 * A constant for the number param.
+	 */
+	private static final String NUMBER_PARAM = "number";
+
+	/**
 	 * The stores service.
 	 */
 	@Autowired
@@ -52,11 +57,12 @@ public class StoresController {
 		try {
 			int registeredStores = this.storeService.countRegisteredStores();
 			Map<String, Long> storesPerCity = this.storeService.getStoresPerCity();
-			model.addAttribute("number", registeredStores);
+			model.addAttribute(NUMBER_PARAM, registeredStores);
 			model.addAttribute("map", storesPerCity);
 		} catch (APIException e) {
 			logger.error("Error getting stores data", e);
 			model.addAttribute("msg", "Impossible to retrieve stores data");
+			model.addAttribute(NUMBER_PARAM, 0);
 		}
 		return "stores-group";
 	}
@@ -73,11 +79,12 @@ public class StoresController {
 		try {
 			model.addAttribute("city", city);
 			List<Store> stores = this.storeService.findStoreByCity(city);
-			model.addAttribute("number", stores.size());
+			model.addAttribute(NUMBER_PARAM, stores.size());
 			model.addAttribute("stores", stores);
 		} catch (APIException e) {
 			logger.error("Error getting stores list by city " + city, e);
 			model.addAttribute("msg", "Impossible to retrieve stores list of city " + city);
+			model.addAttribute(NUMBER_PARAM, 0);
 		}
 		return "stores-list";
 	}
@@ -101,7 +108,8 @@ public class StoresController {
 			model.addAttribute("stores", stores);
 		} catch (APIException e) {
 			logger.error("Error getting closest stores data", e);
-			model.addAttribute("msg", "Impossible to retrieve closest stores data");
+			model.addAttribute("msg", "Unable to retrieve the closest stores");
+			model.addAttribute("limit", 0);
 		}
 		return "closest-stores";
 	}

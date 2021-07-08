@@ -13,8 +13,14 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class CommandLineAppStartupRunner implements CommandLineRunner {
+	/**
+	 * A constant for the file name with stores data.
+	 */
     private static final String STORES_JSON = "stores.json";
 
+	/**
+	 * The logger for {@link CommandLineAppStartupRunner}.
+	 */
 	private static final Logger LOG =
       LoggerFactory.getLogger(CommandLineAppStartupRunner.class);
 

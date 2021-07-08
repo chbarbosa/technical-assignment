@@ -11,12 +11,13 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </style>
 <body class="w3-light-grey">
 	<div class="w3-container">
-	    <h5>
+	    <h3>
 	    	<span th:text="'Stores in ' + ${city}" th:remove="tag">Stores</span>
-	    </h5>
+	    </h3>
 	    <p th:text="'There are ' + ${number} + ' stores here.'" />
-		<p class="w3-red" th:text="${msg}"></p>
-	    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+		<p class="w3-red" style="text-indent: 3px;" th:text="${msg}"></p>
+	    <table th:if="${stores != null}"
+	    	class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
 	    <thead>
 	        <tr>
 	            <th> Address </th>
